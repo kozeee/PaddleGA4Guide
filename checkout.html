@@ -41,10 +41,10 @@
       const $ = (x) => document.getElementById(x);
       $("checkoutButton").addEventListener("click", checkoutSetup);
 
-      // setup environment and vendor id
+      // Include your vendor ID
       Paddle.Environment.set("sandbox");
       Paddle.Setup({
-        vendor: 7617,
+        vendor: ,
         eventCallback: function (data) {
           if (data.event === "Checkout.Complete") {
             let dataLayerInfo = {
@@ -65,12 +65,14 @@
         }
       })
 
-      // updates attributes if user chooses to fill out the form
+      // Be sure to add your own product, email, and coupon
+      // 100% off coupons make testing very easy
+      // country set to AF to avoid post code
       function checkoutSetup() {
-        let coupon = "PADDLEFUN";
+        let coupon = "";
         Paddle.Checkout.open({
-          product: 36750,
-          email: "kmagpaddletesting@gmail.com",
+          product: ,
+          email: "",
           country: "AF",
           coupon: coupon,
         });
