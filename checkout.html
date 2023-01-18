@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Google Tag Manager -->
+    <script>
+      (function (w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
+        var f = d.getElementsByTagName(s)[0],
+          j = d.createElement(s),
+          dl = l != "dataLayer" ? "&l=" + l : "";
+        j.async = true;
+        j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
+        f.parentNode.insertBefore(j, f);
+      })(window, document, "script", "dataLayer", "GTM-WVPLZS2");
+    </script>
+    <!-- End Google Tag Manager -->
+
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+
+  <body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript
+      ><iframe
+        src="https://www.googletagmanager.com/ns.html?id=GTM-WVPLZS2"
+        height="0"
+        width="0"
+        style="display: none; visibility: hidden"
+      ></iframe
+    ></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+    <h1>Checkout Form</h1>
+    <button id="checkoutButton">Express Checkout</button>
+    <script src="https://cdn.paddle.com/paddle/paddle.js"></script>
+    <script type="text/javascript">
+      const $ = (x) => document.getElementById(x);
+      $("checkoutButton").addEventListener("click", checkoutSetup);
+
+      // setup environment and vendor id
+      Paddle.Environment.set("sandbox");
+      Paddle.Setup({
+        vendor: 7617,
+        eventCallback: function (data) {
+          if (data.event === "Checkout.Complete") {
+            let dataLayerInfo = {
+              event: "purchase",
+              ecommerce: {
+                transaction_id: data.eventData.checkout.id,
+                affiliation: "Insert Your Affiliation",
+                value: data.eventData.checkout.prices.customer.total,
+                tax: data.eventData.checkout.prices.customer.total_tax,
+                shipping: null,
+                currency: data.eventData.checkout.prices.customer.currency,
+                coupon: data.eventData.checkout.coupon.coupon_code,
+                items: data.eventData.checkout.prices.customer.items,
+              },
+            };
+            dataLayer.push(dataLayerInfo);
+          }
+        }
+      })
+
+      // updates attributes if user chooses to fill out the form
+      function checkoutSetup() {
+        let coupon = "PADDLEFUN";
+        Paddle.Checkout.open({
+          product: 36750,
+          email: "kmagpaddletesting@gmail.com",
+          country: "AF",
+          coupon: coupon,
+        });
+      }
+    </script>
+  </body>
+</html>
