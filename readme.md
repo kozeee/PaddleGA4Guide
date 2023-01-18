@@ -140,6 +140,8 @@ If we have connected successfully, we can click continue and we should this scre
 ---
 ### Testing A Checkout
 
+If you are using the checkout.html page provided, please be sure to add your own Vendor ID, product, email, and coupon. There are comments to highlight where this is required.
+
 Once we have connected to our page we can proceed with a checkout. As soon as we see the checkout success page we should be able to see three key details:
 
 - First, our `Paddle Events` tag should now be under the `Tags Fired` section in our tags tab.
