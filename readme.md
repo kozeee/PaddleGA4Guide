@@ -14,3 +14,5 @@ Instead of pushing the datalayer from checkout, we can push it from the thank yo
 There may be more elegant solutions, but something simple and easy to implement would be localstorage which is what this example uses.
 
 All we do is save the dataLayer to localstorage on the checkout page, allow the buyer to be redirected, and then read that data from localstorage and push it to tag manager via dataLayer.push(). Then we can just delete the data from localstorage.
+
+Obviously this implementation only works if the buyer is being redirected to another part of the vendor's website, but I believe that is the case a majority of the time.
