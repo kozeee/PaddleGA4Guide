@@ -60,7 +60,9 @@
                 items: data.eventData.checkout.prices.customer.items,
               },
             };
-            dataLayer.push(dataLayerInfo);
+            if (typeof Storage !== "undefined") {
+              localStorage.setItem("persistDL", JSON.stringify(dataLayerInfo));
+            }
           }
         }
       })
