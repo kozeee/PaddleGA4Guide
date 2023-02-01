@@ -23,25 +23,15 @@
     <!-- End Google Tag Manager (noscript) -->
     <h1>Thanks for checking out</h1>
     <script type="text/javascript">
-
-        const $ = (x) => document.getElementById(x);
+        
+        //pull stored checkout data from localstorage
         let retrievedDL = localStorage.getItem('persistDL');
-        dataLayer.push(JSON.parse(retrievedDL));
+        // if the data isnt null/undefined, we'll push to the datalayer and delete from localstorage
+        if (retrievedDL){
+          dataLayer.push(JSON.parse(retrievedDL));
         localStorage.removeItem('persistDL');
-
-       /* console.log(dataLayerInfo);
-            dataLayer.push(dataLayerInfo);
-            if (typeof Storage !== "undefined") {
-              localStorage.setItem("persistDL", JSON.stringify(dataLayerInfo));
-            }
-          } else if (data.event === "Checkout.Close") {
-            dataLayer.push({ event: "checkoutClose" });
-          } else if (data.event === "Checkout.Loaded") {
-            console.log("test");
-            dataLayer.push({ event: "checkoutLoaded" });
-          }
-        },
-      });*/
+        }
+        
      </script>
 
 </body>
